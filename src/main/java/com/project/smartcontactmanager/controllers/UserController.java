@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,10 +22,15 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@PostMapping("/users")
+	public void addUser(@RequestBody User user)
+	{
+		userService.addUser(user);
+	}
+	
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllUsers()
 	{
-		System.out.println("Hi u r in user controller");
 		return userService.getAllUsers();
 	}
 	
@@ -34,11 +40,13 @@ public class UserController {
 		return userService.getUserById(id);
 	}
 	
-	@PostMapping("/users")
-	public void addUser(@RequestBody User user)
+	@PutMapping("/users/{id}")
+	 public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User newUser) 
 	{
-		userService.addUser(user);
+	    return userService.updateUser(id,newUser);
 	}
+	
+	
 	
 
 }

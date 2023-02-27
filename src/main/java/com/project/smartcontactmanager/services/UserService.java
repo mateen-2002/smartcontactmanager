@@ -3,7 +3,6 @@ package com.project.smartcontactmanager.services;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import com.project.smartcontactmanager.entities.User;
@@ -43,6 +42,17 @@ public class UserService {
 		
 		userRepository.save(user);
 		
+	}
+
+	public ResponseEntity<User> updateUser(int id, User newUser) {
+		
+		User oldUser = userRepository.findById(id);
+		if(oldUser == null)
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	    oldUser.setName(newUser.getName());
+	    oldUser.setEmail(newUser.getEmail());
+	    oldUser.setPassword(newUser.getPassword());
+		return new ResponseEntity<>(userRepository.save(oldUser), HttpStatus.OK);
 	}
 
 }
