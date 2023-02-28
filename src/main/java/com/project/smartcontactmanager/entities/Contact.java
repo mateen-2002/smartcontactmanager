@@ -1,5 +1,6 @@
 package com.project.smartcontactmanager.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -21,8 +22,8 @@ public class Contact {
 	private String work;
 	private String email;
 	private String phone;
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinColumn(name = "userid", nullable = false)
 	private User user;
 	public int getId() {
 		return id;
