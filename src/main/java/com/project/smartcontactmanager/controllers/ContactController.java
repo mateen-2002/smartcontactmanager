@@ -33,7 +33,7 @@ public class ContactController {
 	}
 	
 	@GetMapping("users/{uId}/contacts/{s}")
-	public ResponseEntity<List<Contact>> getAllContactsStartingWithName(@PathVariable("id") int uId ,@PathVariable("s") String s)
+	public ResponseEntity<List<Contact>> getAllContactsStartingWithName(@PathVariable("uId") int uId ,@PathVariable("s") String s)
 	{
 		return contactService.getAllContactsStartingWithName(uId,s);
 	}
