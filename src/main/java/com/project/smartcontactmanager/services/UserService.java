@@ -1,10 +1,14 @@
 package com.project.smartcontactmanager.services;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
 import com.project.smartcontactmanager.entities.User;
 import com.project.smartcontactmanager.repositories.UserRepository;
 
@@ -13,6 +17,9 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	public ResponseEntity<List<User>> getAllUsers() 
 	{
@@ -39,7 +46,7 @@ public class UserService {
 
 	public void addUser(User user) {
 		
-		
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 		
 	}
@@ -51,7 +58,7 @@ public class UserService {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	    oldUser.setName(newUser.getName());
 	    oldUser.setEmail(newUser.getEmail());
-	    oldUser.setPassword(newUser.getPassword());
+	    oldUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
 		return new ResponseEntity<>(userRepository.save(oldUser), HttpStatus.OK);
 	}
 

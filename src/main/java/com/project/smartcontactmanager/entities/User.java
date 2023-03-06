@@ -1,11 +1,11 @@
 package com.project.smartcontactmanager.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="users")
@@ -19,7 +19,7 @@ public class User {
 	private String email;
 	private String password;
 	private String role;
-	private boolean isEnabled;
+	private boolean isDisabled;
 	
 	public int getId() {
 		return id;
@@ -52,15 +52,15 @@ public class User {
 		this.role = role;
 	}
 	public boolean isEnabled() {
-		return isEnabled;
+		return isDisabled;
 	}
 	public void setEnabled(boolean isEnabled) {
-		this.isEnabled = isEnabled;
+		this.isDisabled = isEnabled;
 	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
-				+ ", isEnabled=" + isEnabled + "]";
+				+ ", isEnabled=" + isDisabled + "]";
 	}
 	
 	
