@@ -21,30 +21,30 @@ public class ContactController {
 	@Autowired
 	private ContactService contactService;
 	
-	@PostMapping("/users/{uId}/contacts")
+	@PostMapping("/user/{uId}/contacts")
 	  public ResponseEntity<Contact> createContact(@PathVariable("uId") int uId,@RequestBody Contact contact) {
 	    return contactService.createContact(uId,contact);
 	  }
 	
-	@GetMapping("users/{uId}/contacts")
+	@GetMapping("user/{uId}/contacts")
 	public List<Contact> getAllContactsOfUser(@PathVariable("uId") int uid)
 	{
 		return contactService.getAllContactsOfUser(uid);
 	}
 	
-	@GetMapping("users/{uId}/contacts/{s}")
+	@GetMapping("user/{uId}/contacts/{s}")
 	public ResponseEntity<List<Contact>> getAllContactsStartingWithName(@PathVariable("uId") int uId ,@PathVariable("s") String s)
 	{
 		return contactService.getAllContactsStartingWithName(uId,s);
 	}
 	
-	@PutMapping("users/{uId}/contacts/{cId}")
+	@PutMapping("user/{uId}/contacts/{cId}")
 	public ResponseEntity<Contact> updateContact(@PathVariable("uId") int uId,@PathVariable("cId") int cId,@RequestBody Contact UpdateContactDetails)
 	{
 		return contactService.updateContact(uId,cId,UpdateContactDetails);
 	}
 	
-	@DeleteMapping("users/{uId}/contacts/{cId}")
+	@DeleteMapping("user/{uId}/contacts/{cId}")
 	public void deleteContact(@PathVariable("uId") int uId,@PathVariable("cId") int cId)
 	{
 		contactService.deleteContact(uId,cId);

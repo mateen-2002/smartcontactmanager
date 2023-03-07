@@ -29,9 +29,10 @@ public class UserService {
 	    userRepository.findAll().forEach(users::add);
 
 	    if (users.isEmpty()) {
+	    	System.out.println("No Users");
 	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	    }
-
+	    System.out.println("Users are avaolable");
 	    return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 

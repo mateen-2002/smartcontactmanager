@@ -1,7 +1,6 @@
 package com.project.smartcontactmanager.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +21,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@PostMapping("/users")
+	@PostMapping("/signup")
 	public void addUser(@RequestBody User user)
 	{
 		userService.addUser(user);
@@ -46,7 +45,4 @@ public class UserController {
 	    return userService.updateUser(id,newUser);
 	}
 	
-	
-	
-
 }

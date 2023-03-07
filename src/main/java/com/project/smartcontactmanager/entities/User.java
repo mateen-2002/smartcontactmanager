@@ -51,11 +51,11 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public boolean isEnabled() {
+	public boolean isDisabled() {
 		return isDisabled;
 	}
-	public void setEnabled(boolean isEnabled) {
-		this.isDisabled = isEnabled;
+	public void setEnabled(boolean isDisabled) {
+		this.isDisabled = isDisabled;
 	}
 	@Override
 	public String toString() {
